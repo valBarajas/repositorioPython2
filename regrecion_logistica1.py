@@ -4,6 +4,8 @@ libreria de unas plantas iris paar tener una prediccio
 """
 import numpy as np
 import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+
 ######################################
 
 #importar dataset para iniciar al analisis
@@ -65,6 +67,30 @@ y=np.array(iris['Species'])
 X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
 
 print('son {} datos para entrenamiento y {} datos para prueba'.format(X_train.shape[0],X_test.shape[0]))
+
+#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Regresión Logística: {}'.format(algoritmo.score(X_train, y_train)))
+
+#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Máquinas de Vectores de Soporte: {}'.format(algoritmo.score(X_train, y_train)))
+
+#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Vecinos más Cercanos: {}'.format(algoritmo.score(X_train, y_train)))
+
+#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Árboles de Decisión Clasificación: {}'.format(algoritmo.score(X_train, y_train)))
 
 
 
